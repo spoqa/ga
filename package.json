@@ -1,0 +1,21 @@
+{
+  "name": "gaw",
+  "author": "Spoqa Inc.",
+  "description": "simple google analytics wrapper",
+  "license": "MIT",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spoqa/gaw.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/google.analytics": "0.0.34",
+    "typescript": "^2.4.2"
+  }
+}
