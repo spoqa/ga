@@ -9,7 +9,13 @@ npm install gaw
 ```js
 import { Tracker } from 'gaw';
 const tracker = Tracker.init({ trackingId: 'UA-XXXX-Y' });
-tracker.startSession();
-// tracker.trackPage('/blabla'); // for single page application
-// tracker.trackEvent('Carousel', 'slide to left');
+if (traditional_web_page) {
+    tracker.trackCurrentPage();
+}
+if (single_page_application) {
+    tracker.startSession();
+    tracker.trackPage('/blabla');
+    // tracker.endSession();
+}
+tracker.trackEvent('Carousel', 'slide to left');
 ```

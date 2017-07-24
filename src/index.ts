@@ -91,6 +91,12 @@ export class Tracker {
     startSession() { this.send('pageview', { sessionControl: 'start' }); }
     endSession() { this.send('pageview', { sessionControl: 'end' }); }
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/pages
+    trackCurrentPage(title?: string) {
+        this.send('pageview', {
+            page: (typeof window === 'undefined') ? '/' : window.location.pathname,
+            title,
+        });
+    }
     trackPage(pathname: string, title?: string) { // window.location.pathname
         if (pathname[0] !== '/') throw new Error(`pathname은 슬래시문자('/')로 시작해야 합니다: https://developers.google.com/analytics/devguides/collection/analyticsjs/pages#pageview_fields`);
         this.send('pageview', { page: pathname, title });
