@@ -88,8 +88,8 @@ export class Tracker {
         Tracker.ga(`${ this.fields.name }.send`, { ...fields, hitType });
     }
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#session
-    startSession(hitType: HitType) { this.send(hitType, { sessionControl: 'start' }); }
-    endSession(hitType: HitType) { this.send(hitType, { sessionControl: 'end' }); }
+    startSession(hitType: HitType = 'pageview') { this.send(hitType, { sessionControl: 'start' }); }
+    endSession(hitType: HitType = 'pageview') { this.send(hitType, { sessionControl: 'end' }); }
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/pages
     trackCurrentPage(title?: string) {
         this.send('pageview', {
@@ -106,9 +106,10 @@ export class Tracker {
         this.send('pageview', { location: href, title });
     }
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/screens
-    trackScreen(screenName: string) {
+    // 이유는 모르겠지만 실제로 google analytics 사이트에서는 앱 뷰에서도 pageview hitType만 추적이 되고있음
+    trackScreen(screenName: string, hitType: HitType = 'pageview') {
         if (!this.fields.appName) throw new Error('앱 화면을 트래킹하려면 appName 필드가 채워져있어야 합니다: https://developers.google.com/analytics/devguides/collection/analyticsjs/screens#screen_fields');
-        this.send('screenview', { screenName });
+        this.send(hitType, { screenName });
     }
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/events
     trackEvent(
