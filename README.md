@@ -13,9 +13,9 @@ if (traditional_web_page) {
     tracker.trackCurrentPage();
 }
 if (single_page_application) {
-    tracker.startSession();
+    tracker.startSession('pageview');
     tracker.trackPage('/blabla');
-    // tracker.endSession();
+    // tracker.endSession('pageview');
 }
 tracker.trackEvent('Carousel', 'slide to left');
 ```

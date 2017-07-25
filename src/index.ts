@@ -10,7 +10,7 @@ export interface Fields {
     userId?: string,
 }
 
-type HitType
+export type HitType
     = 'pageview'
     | 'screenview'
     | 'event'
@@ -88,8 +88,8 @@ export class Tracker {
         Tracker.ga(`${ this.fields.name }.send`, { ...fields, hitType });
     }
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#session
-    startSession() { this.send('pageview', { sessionControl: 'start' }); }
-    endSession() { this.send('pageview', { sessionControl: 'end' }); }
+    startSession(hitType: HitType) { this.send(hitType, { sessionControl: 'start' }); }
+    endSession(hitType: HitType) { this.send(hitType, { sessionControl: 'end' }); }
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/pages
     trackCurrentPage(title?: string) {
         this.send('pageview', {
